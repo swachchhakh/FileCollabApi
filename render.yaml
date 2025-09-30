@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: dotnet-backend
+    env: dotnet
+    buildCommand: dotnet publish -c Release -o out
+    startCommand: dotnet out/FileCollab.Api.dll
+    plan: free
+    autoDeploy: true
