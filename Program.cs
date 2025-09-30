@@ -50,7 +50,8 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") // React frontend origin
+        policy.WithOrigins("http://localhost:3000",   "https://filecollabapi.onrender.com")
+
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials(); // if using cookies/auth
@@ -58,7 +59,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
+app.UseCors("AllowReactApp");
 app.MapControllers();
 app.MapHub<CollaborationHub>("/hub/collaboration");
 
